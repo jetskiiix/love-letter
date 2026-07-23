@@ -1,0 +1,938 @@
+/* ===========================
+   GLOBAL
+=========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    font-family: "Segoe UI", sans-serif;
+
+    background:
+        radial-gradient(circle at top, #1b2758 0%, #090b18 45%, #020204 100%);
+
+    color: white;
+
+    overflow-x: hidden;
+}
+
+
+/* ===========================
+   STARS
+=========================== */
+
+#stars {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -10;
+
+    overflow: hidden;
+
+}
+
+.star {
+
+    position: absolute;
+
+    width: 2px;
+
+    height: 2px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    animation: twinkle 3s infinite ease-in-out;
+
+}
+
+@keyframes twinkle {
+
+    0% {
+        opacity: .2;
+        transform: scale(.7);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+
+    100% {
+        opacity: .2;
+        transform: scale(.7);
+    }
+
+}
+
+
+/* ===========================
+   SHOOTING STAR
+=========================== */
+
+#shootingStar {
+
+    position: fixed;
+
+    top: -100px;
+
+    left: -100px;
+
+    width: 220px;
+
+    height: 3px;
+
+    background: linear-gradient(to right, white, transparent);
+
+    transform: rotate(-35deg);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    z-index: -5;
+
+}
+
+
+/* ===========================
+   MOON
+=========================== */
+
+#moon {
+
+    position: fixed;
+
+    top: 70px;
+
+    right: 80px;
+
+    width: 130px;
+
+    height: 130px;
+
+    border-radius: 50%;
+
+    background: #fff9dc;
+
+    box-shadow:
+        0 0 25px #fff4a0,
+        0 0 60px #fff8c4,
+        0 0 120px rgba(255,255,220,.5);
+
+    transition: .4s;
+
+    cursor: pointer;
+
+    z-index: -2;
+
+}
+
+#moon:hover {
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 40px #fff4b6,
+        0 0 100px #fff4b6,
+        0 0 180px rgba(255,255,220,.7);
+
+}
+
+
+/* ===========================
+   LANTERNS
+=========================== */
+
+#lanternContainer {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+}
+
+.lantern {
+
+    position: absolute;
+
+    width: 45px;
+
+    height: 65px;
+
+    border-radius: 10px;
+
+    background: linear-gradient(#ffd56b,#ff9933);
+
+    box-shadow:
+        0 0 20px orange,
+        0 0 40px rgba(255,170,0,.5);
+
+    animation: floatUp linear infinite;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+
+}
+
+.lantern::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -10px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 2px;
+
+    height: 12px;
+
+    background: white;
+
+}
+
+@keyframes floatUp {
+
+    from {
+
+        transform:
+            translateY(110vh);
+
+    }
+
+    to {
+
+        transform:
+            translateY(-120px);
+
+    }
+
+}
+
+
+/* ===========================
+   SECTIONS
+=========================== */
+
+section {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-direction: column;
+
+    padding: 60px 20px;
+
+}
+
+
+/* ===========================
+   GLASS CARD
+=========================== */
+
+.glass {
+
+    width: min(900px,90vw);
+
+    padding: 40px;
+
+    border-radius: 25px;
+
+    backdrop-filter: blur(18px);
+
+    background: rgba(255,255,255,.08);
+
+    border: 1px solid rgba(255,255,255,.15);
+
+    box-shadow:
+
+        0 0 30px rgba(255,255,255,.08);
+
+}
+
+
+/* ===========================
+   TITLES
+=========================== */
+
+h1 {
+
+    font-size: clamp(45px,7vw,80px);
+
+    margin-bottom: 20px;
+
+    text-align:center;
+
+}
+
+h2 {
+
+    text-align:center;
+
+    font-size:40px;
+
+    margin-bottom:30px;
+
+}
+
+p {
+
+    line-height:1.8;
+
+    font-size:22px;
+
+}
+
+
+/* ===========================
+   BUTTONS
+=========================== */
+
+button {
+
+    margin-top:35px;
+
+    padding:15px 40px;
+
+    border:none;
+
+    border-radius:50px;
+
+    background:#ff4f88;
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:hover {
+
+    transform:translateY(-4px);
+
+    box-shadow:
+
+        0 0 20px hotpink;
+
+}
+
+
+/* ===========================
+   PASSWORD
+=========================== */
+
+input {
+
+    margin-top:25px;
+
+    width:100%;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    border:none;
+
+    font-size:18px;
+
+}
+
+
+/* ===========================
+   MEMORY CARDS
+=========================== */
+
+#memoryContainer{
+
+    width:min(1200px,90vw);
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+    gap:25px;
+
+    margin-top:40px;
+
+}
+
+.memory{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    transition:.3s;
+
+}
+
+.memory:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.memory img{
+
+    width:100%;
+
+    height:250px;
+
+    object-fit:cover;
+
+}
+
+.memory h3{
+
+    padding:15px;
+
+}
+
+.memory p{
+
+    padding:0 15px 20px;
+
+    font-size:18px;
+
+}
+
+
+/* ===========================
+   LETTER
+=========================== */
+
+#letterText{
+
+    white-space:pre-wrap;
+
+    min-height:250px;
+
+}
+
+
+/* ===========================
+   FADE IN
+=========================== */
+
+.hidden{
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+}
+
+.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+    transition:1s;
+
+}
+
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:700px){
+
+#moon{
+
+    width:90px;
+
+    height:90px;
+
+    right:20px;
+
+    top:30px;
+
+}
+
+button{
+
+    width:100%;
+
+}
+
+h2{
+
+    font-size:30px;
+
+}
+
+p{
+
+    font-size:18px;
+
+}
+
+}
+
+/* ===========================
+   LANTERN LAYER FIX
+=========================== */
+
+#lanternContainer {
+
+    position: fixed;
+
+    inset:0;
+
+    z-index:5;
+
+    pointer-events:none;
+
+}
+
+
+/* Make lanterns clickable */
+
+.lantern {
+
+    pointer-events:auto;
+
+    opacity:.9;
+
+}
+
+
+/* ===========================
+   MESSAGE POPUP
+=========================== */
+
+
+#messagePopup {
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(0,0,0,.5);
+
+    backdrop-filter:blur(8px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.5s;
+
+    z-index:20;
+
+}
+
+
+#messagePopup.active {
+
+    opacity:1;
+
+    pointer-events:auto;
+
+}
+
+
+.popupBox {
+
+    width:min(500px,85vw);
+
+    padding:40px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    background:
+
+    linear-gradient(
+        145deg,
+        rgba(255,200,120,.2),
+        rgba(255,80,150,.15)
+    );
+
+    border:
+
+    1px solid rgba(255,255,255,.3);
+
+    box-shadow:
+
+    0 0 50px rgba(255,170,80,.5);
+
+    animation:
+
+    popupOpen .5s ease;
+
+}
+
+
+.popupBox p {
+
+    font-size:28px;
+
+}
+
+
+#closePopup {
+
+    position:absolute;
+
+    margin-left:420px;
+
+    margin-top:-25px;
+
+    cursor:pointer;
+
+    font-size:25px;
+
+}
+
+
+@keyframes popupOpen {
+
+from {
+
+    transform:scale(.7);
+
+    opacity:0;
+
+}
+
+to {
+
+    transform:scale(1);
+
+    opacity:1;
+
+}
+
+}
+
+/* ===========================
+   CINEMATIC INTRO
+=========================== */
+
+#intro {
+
+    transition: 2s ease;
+
+}
+
+
+#intro.fadeOut {
+
+    opacity: 0;
+
+    transform: scale(1.15);
+
+    pointer-events: none;
+
+}
+
+
+#introContent {
+
+    text-align: center;
+
+    animation: introAppear 2s ease;
+
+}
+
+
+@keyframes introAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(40px);
+
+    }
+
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* Letter fade */
+
+#letterSection {
+
+    opacity: 0;
+
+    transition: 2s ease;
+
+}
+
+
+#letterSection.showLetter {
+
+    opacity: 1;
+
+}
+
+/* ===========================
+   MUSIC BUTTON
+=========================== */
+
+#musicButton {
+
+    position:fixed;
+
+    bottom:30px;
+
+    left:30px;
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    padding:0;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,.3);
+
+    font-size:25px;
+
+    z-index:30;
+
+}
+
+
+#musicButton:hover {
+
+    transform:scale(1.15);
+
+}
+
+/* ===========================
+   FIREFLIES
+=========================== */
+
+
+#fireflyContainer {
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:2;
+
+}
+
+
+.firefly {
+
+    position:absolute;
+
+    width:6px;
+
+    height:6px;
+
+    border-radius:50%;
+
+    background:#fff3a3;
+
+    box-shadow:
+        0 0 10px #fff3a3,
+        0 0 25px #ffe66d;
+
+    animation:
+        flyAround 8s infinite ease-in-out,
+        glow 2s infinite alternate;
+
+}
+
+
+@keyframes glow {
+
+    from {
+
+        opacity:.2;
+
+        transform:scale(.7);
+
+    }
+
+    to {
+
+        opacity:1;
+
+        transform:scale(1.4);
+
+    }
+
+}
+
+
+@keyframes flyAround {
+
+    0% {
+
+        margin-top:0;
+
+        margin-left:0;
+
+    }
+
+
+    50% {
+
+        margin-top:-80px;
+
+        margin-left:60px;
+
+    }
+
+
+    100% {
+
+        margin-top:0;
+
+        margin-left:0;
+
+    }
+
+}
+
+/* ===========================
+   FINAL ENDING
+=========================== */
+
+
+#endingSection {
+
+    background:
+
+    radial-gradient(
+        circle,
+        #101735,
+        #000
+    );
+
+}
+
+
+#endingContent {
+
+    text-align:center;
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+    transition:3s ease;
+
+}
+
+
+#endingContent.showEnding {
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+
+#endingContent h1 {
+
+    font-size:55px;
+
+    text-shadow:
+
+    0 0 20px pink;
+
+}
+
+
+#finalLantern {
+
+    font-size:90px;
+
+    animation:
+
+    finalFloat 4s infinite ease-in-out;
+
+}
+
+
+@keyframes finalFloat {
+
+
+0%{
+
+transform:translateY(0);
+
+}
+
+
+50%{
+
+transform:translateY(-40px);
+
+}
+
+
+100%{
+
+transform:translateY(0);
+
+}
+
+
+}
